@@ -16,7 +16,7 @@ individual controllers/services/directives.
 
 ### Using r.js as Javascript optimiser
 
-There are gulp and grunt tasks that can call r.js to perform the optimisation, but either they are not easy to setup, or they
+There are `gulp` and `grunt` tasks that can call `r.js` to perform the optimisation, but either they are not easy to setup, or they
 simply cannot fit into my situation which didn't considered optimising Javascript at all from the beginning.
 
 Therefore, an `after_prepare` hook is added into the build process, which calls r.js directly to perform the optimisation, before
