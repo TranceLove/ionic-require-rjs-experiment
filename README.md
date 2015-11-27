@@ -22,9 +22,21 @@ simply cannot fit into my situation which didn't considered optimising Javascrip
 Therefore, an `after_prepare` hook is added into the build process, which calls r.js directly to perform the optimisation, before
 `cordova` actually builds the app.
 
-### Gotcha on running Javascript optimisers with apps written in AngularJS+RequireJS
+During environment however, it is a good idea to keep the JS files unmodified or minified. So a `r.js` flag is introduced in `bower.json` which will, when set to true, calls `r.js` for optimising the JS files.
+
+### Caveat on running Javascript optimisers with apps written in AngularJS+RequireJS
 
 Explicit dependency declaration is required, since r.js(or other Javascript optimisers too) may also optimise variable names,
 which can also become a problem.
 
 See https://docs.angularjs.org/guide/di for details.
+
+### Enable template cache to add HTML view templates into minified JS file
+
+AngularJS allow view templates declared as strings in its own template cache, which can speed up view loading and make HTML source modification more difficult.
+
+However, it also increase difficulty during development. Therefore, a little trick is used to enable usage of template cache automatically.
+
+In `app.js`, there are two special tokens, `/*,'templates'*/` and `/*,'myapp.templates'*/`. When `gulp-angular-templatecache` is enabled in bower.json, a Cordova hook will modify `app.js` by uncomment out these two tokens, before everything goes to `r.js` hook for processing.
+
+Together with the `r.js` optimisation above, the whole AngularJS/Ionic Framework HTML and JS assets can be concatenated and minified into one single file. :)

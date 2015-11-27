@@ -2,8 +2,8 @@ define(["angular",
         "angular-ionic",
         "angular-cookies",
         "angular-ui-router",
-        "controllers/index"], function(angular){
-	return angular.module('app', ['ionic', 'ui.router', 'myapp.controllers'])
+        "controllers/index"/*,'templates'*/], function(angular){
+	return angular.module('app', ['ionic', 'ui.router', 'myapp.controllers'/*,'myapp.templates'*/])
     .config(["$compileProvider", function ($compileProvider){
         // Set the whitelist for certain URLs just to be safe
         $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
