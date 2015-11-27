@@ -37,6 +37,8 @@ AngularJS allow view templates declared as strings in its own template cache, wh
 
 However, it also increase difficulty during development. Therefore, a little trick is used to enable usage of template cache automatically.
 
-In `app.js`, there are two special tokens, `/*,'templates'*/` and `/*,'myapp.templates'*/`. When `gulp-angular-templatecache` is enabled in bower.json, a Cordova hook will modify `app.js` by uncomment out these two tokens, before everything goes to `r.js` hook for processing.
+First, a `gulp-angular-templatecache` flag is defined in bower.json. When enabled, a gulp task is called to compile separate HTML view templates into one JS file.
+
+Then in `app.js`, there are two special tokens, `/*,'templates'*/` and `/*,'myapp.templates'*/`. When `gulp-angular-templatecache` is enabled in bower.json, a Cordova hook will modify `app.js` by uncomment out these two tokens, before everything goes to `r.js` hook for processing.
 
 Together with the `r.js` optimisation above, the whole AngularJS/Ionic Framework HTML and JS assets can be concatenated and minified into one single file. :)
